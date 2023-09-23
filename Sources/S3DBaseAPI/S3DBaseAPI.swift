@@ -9,12 +9,7 @@ public class BaseAPI {
     ])
     public init(mocking:Bool=false){
         guard mocking else { return }
-            
-        let endpointClosure = { (target: S3DAPI) -> Endpoint in
-            return Endpoint(url: URL(target: target).absoluteString, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: target.headers)
-        }
-        self.provider =  MoyaProvider<S3DAPI>(endpointClosure: endpointClosure,
-            plugins: [
+        self.provider =  MoyaProvider<S3DAPI>(stubClosure: MoyaProvider.delayedStub(2), plugins: [
             StatusCodeInterceptorPlugin()])
             
     }
