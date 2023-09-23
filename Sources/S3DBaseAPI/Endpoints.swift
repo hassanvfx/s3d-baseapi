@@ -21,9 +21,9 @@ extension S3DAPI: TargetType {
     public var sampleData: Data{
         switch self {
         case .requestCode:
-            return "true".utf8EncodedData
+            return "{\"result\":true}".utf8EncodedData
         case .validateCode:
-            return "jwttoken12345abcd".utf8EncodedData
+            return "{\"result\":\"jwttoken12345abcd\"}".utf8EncodedData
         }
     }
     public var path: String {
